@@ -35,6 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
 
+                <div style="color:#999;margin:1em 0">
+                    Belum punya akun? Silahkan <?= Html::a('Daftar', ['site/signup']) ?> terlebih dahulu.
+                </div>
+
             <?php ActiveForm::end(); ?>
         </div>
     </div>

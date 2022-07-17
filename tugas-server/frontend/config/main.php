@@ -11,6 +11,7 @@ return [
     'name' => 'Tugas Server',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'id-ID',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [

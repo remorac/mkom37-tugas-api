@@ -11,6 +11,7 @@ return [
     'name' => 'Tugas Client',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'id-ID',
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => '/payment/index',
     'components' => [

@@ -2,8 +2,6 @@
 
 namespace frontend\controllers;
 
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -16,6 +14,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\ResendVerificationEmailForm;
+use frontend\models\VerifyEmailForm;
 
 /**
  * Site controller
@@ -262,31 +262,5 @@ class SiteController extends Controller
         return $this->render('resendVerificationEmail', [
             'model' => $model
         ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeAction($action)
-    {            
-        if ($action->id == 'api') {
-            $this->enableCsrfValidation = false;
-        }
-        return parent::beforeAction($action);
-    }
-
-    public function actionApi()
-    {
-        $post = Yii::$app->request->post();
-        $user = User::findOne(['identity_number' => $post['identity_number']]);
-        if ($user) {
-            $user->payment_status = User::PAYMENT_STATUS_PAID;
-            $user->save();
-        }
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return [
-            'status' => 200,
-            'data' => \yii\helpers\Json::encode($post),
-        ];
     }
 }

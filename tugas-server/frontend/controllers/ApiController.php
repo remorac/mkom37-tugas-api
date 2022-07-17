@@ -11,8 +11,18 @@ use common\models\User;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class ApiController extends Controller
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {            
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
     public function actionSetPaid()
     {
         $post = Yii::$app->request->post();

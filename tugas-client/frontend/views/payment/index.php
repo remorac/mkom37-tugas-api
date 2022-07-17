@@ -26,16 +26,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'identity_number',
-            'paid_at:datetime',
             [
+                'class' => 'yii\grid\SerialColumn',
+                'headerOptions' => ['style' => 'width:1px; white-space:nowrap'],
+                'contentOptions' => ['style' => 'width:1px; white-space:nowrap'],
+            ],
+            /* [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, \frontend\models\Payment $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                },
+                'headerOptions' => ['style' => 'width:1px; white-space:nowrap'],
+                'contentOptions' => ['style' => 'width:1px; white-space:nowrap'],
+            ], */
+            [
+                'attribute' => 'id',
+                'headerOptions' => ['style' => 'width:1px; white-space:nowrap'],
+                'contentOptions' => ['style' => 'width:1px; white-space:nowrap'],
+            ],
+            'identity_number',
+            [
+                'attribute' => 'paid_at',
+                'format' => 'datetime',
+                'headerOptions' => ['style' => 'width:1px; white-space:nowrap'],
+                'contentOptions' => ['style' => 'width:1px; white-space:nowrap'],
             ],
         ],
     ]); ?>
