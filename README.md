@@ -2,7 +2,6 @@
 - Composer
 - PHP >= 7.2
 - MySQL
-<br/>  
 
 ### Installation
 On both directory (`tugas-client` and `tugas-server`):
