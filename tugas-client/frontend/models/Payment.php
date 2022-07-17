@@ -47,7 +47,7 @@ class Payment extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'identity_number' => 'NIK',
-            'paid_at' => 'Membayar pada',
+            'paid_at' => 'Waktu Pembayaran',
         ];
     }
 

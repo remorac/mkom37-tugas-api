@@ -76,6 +76,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        return $this->redirect(['/payment/index']);
         return $this->render('index');
     }
 
