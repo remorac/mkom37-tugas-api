@@ -85,10 +85,8 @@ class Payment extends \yii\db\ActiveRecord
         }
     }
 
-    public function afterDelete()
+    public function sendRequestToServer()
     {
-        parent::afterDelete();
-
         $client = new Client();
         $response = $client->createRequest()
             ->setMethod('POST')
@@ -100,6 +98,8 @@ class Payment extends \yii\db\ActiveRecord
             ->send();
         if ($response->isOk) {
             Yii::info(\yii\helpers\Json::encode($response));
-        }
+            return true;
+        } 
+        return false;
     }
 }

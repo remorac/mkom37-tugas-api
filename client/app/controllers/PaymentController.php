@@ -71,8 +71,23 @@ class PaymentController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                if ( $model->save()) return $this->redirect(['index']);
-                else \Yii::$app->session->addFlash('error', \yii\helpers\Json::encode($model->errors));
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ( $model->save()) {
+                        if ($model->sendRequestToServer()) {
+                            $transaction->commit();
+                            \Yii::$app->session->addFlash('success', 'Pembayaran <b>'.$model->identity_number.'</b> terkonfirmasi.');
+                            return $this->redirect(['index']);
+                        } else {
+                            \Yii::$app->session->addFlash('error', 'Tidak dapat menghubungi server. Periksa konfigurasi <code>serverUrl</code> dan pastikan client sudah berada pada jaringan yang sama dengan induk.');
+                        }
+                    } else {
+                        \Yii::$app->session->addFlash('error', \yii\helpers\Json::encode($model->errors));
+                    }
+                } catch (\Exception $exception) {
+                    \Yii::$app->session->addFlash('error', 'Tidak dapat menghubungi server. Periksa konfigurasi <code>serverUrl</code> dan pastikan client sudah berada pada jaringan yang sama dengan induk.');
+                }
+                $transaction->rollBack();
             }
         } else {
             $model->loadDefaultValues();
