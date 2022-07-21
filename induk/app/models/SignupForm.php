@@ -48,6 +48,7 @@ class SignupForm extends Model
     {
         return [
             'identity_number' => 'NIK',
+            'username' => 'Nama',
         ];
     }
 

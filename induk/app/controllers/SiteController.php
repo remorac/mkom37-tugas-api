@@ -8,7 +8,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use common\models\LoginFormByIdentityNumber;
 use common\models\User;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
@@ -96,7 +96,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new LoginFormByIdentityNumber();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }

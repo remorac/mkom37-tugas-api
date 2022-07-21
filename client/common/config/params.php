@@ -7,5 +7,5 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
 
-    'serverUrl' => 'http://tugas-server',
+    'serverUrl' => 'http://192.168.146.1/induk/app/web',
 ];
